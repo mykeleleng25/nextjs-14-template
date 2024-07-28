@@ -39,6 +39,7 @@ import {
 } from '@/components/ui/command'
 
 import { Check, ChevronsUpDown } from 'lucide-react'
+import { ComboboxDemo } from '@/components/extended-components/combobox/filter'
 
 const formSchema = z.object({
   username: z.string().min(2).max(50),
@@ -49,6 +50,9 @@ const formSchema = z.object({
     .email(),
   language: z.string({
     required_error: 'Please select a language.',
+  }),
+  phone: z.string({
+    required_error: 'Please select a phone.',
   }),
   mobile: z.boolean().default(false),
 })
@@ -185,6 +189,20 @@ export default function FormPage() {
                     </Command>
                   </PopoverContent>
                 </Popover>
+                <FormDescription>
+                  This is the language that will be used in the dashboard.
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name='phone'
+            render={({ field }) => (
+              <FormItem className='flex flex-col'>
+                <FormLabel>Searchable</FormLabel>
+                <ComboboxDemo form={form} />
                 <FormDescription>
                   This is the language that will be used in the dashboard.
                 </FormDescription>
